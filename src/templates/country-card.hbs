@@ -1,0 +1,24 @@
+<h2>
+    <img src="{{flags.svg}}" alt="{{name.official}}" width="50" height="40">
+{{name.official}}
+</h2>
+ <ul>
+    <li>Capital: {{capital}}</li>
+    <li>Population: {{population}}</li>
+    <li>Languages:
+    {{#each languages}}
+    {{#if @last}}
+    <span>{{this}}</span>
+    {{else}}
+    <span>{{this}},</span>
+    {{/if}}
+    {{/each}}
+    </li>
+ </ul>
+
+
+
+
+    
+ 
+
