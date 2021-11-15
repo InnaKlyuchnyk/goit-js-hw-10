@@ -10,7 +10,11 @@ const DEBOUNCE_DELAY = 300;
 refs.input.addEventListener('input', debounce(onInputTyping, DEBOUNCE_DELAY));
 
 function onInputTyping(event) {
-  const name = event.target.value.trim();
+  const name = event.target.value;
+
+  if (name.charAt(0) === ' ') {
+    return;
+  }
 
   fetchCountries(name.trim())
     .then(countries => {
