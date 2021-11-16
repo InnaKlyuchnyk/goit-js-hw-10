@@ -8,15 +8,16 @@ import { refs } from './js/getRefs';
 const DEBOUNCE_DELAY = 300;
 
 refs.input.addEventListener('input', debounce(onInputTyping, DEBOUNCE_DELAY));
+refs.input.setAttribute('pattern', '[A-Za-z0-9]');
 
 function onInputTyping(event) {
-  const name = event.target.value;
+  const name = event.target.value.trim();
 
-  if (name.charAt(0) === ' ') {
+  if (name.length < 1) {
     return;
   }
 
-  fetchCountries(name.trim())
+  fetchCountries(name)
     .then(countries => {
       if (countries.length > 10) {
         tooManyMatches();
@@ -28,7 +29,10 @@ function onInputTyping(event) {
         refs.countryInfo.insertAdjacentHTML('beforeend', markup);
       }
     })
-    .catch(cleanInterface());
+    .catch(() => {
+      cleanInterface();
+      Notiflix.Notify.failure('Oops, there is no country with that name');
+    });
   if (name === '') {
     cleanInterface();
   }

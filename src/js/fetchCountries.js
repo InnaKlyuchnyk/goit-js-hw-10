@@ -1,5 +1,3 @@
-import Notiflix from 'notiflix';
-
 const BASE_URL = 'https://restcountries.com/v3.1';
 
 export default function fetchCountries(name) {
@@ -8,7 +6,7 @@ export default function fetchCountries(name) {
       if (response.ok) {
         return response.json();
       }
-      throw Notiflix.Notify.failure('Oops, there is no country with that name');
+      throw Error;
     },
   );
 }
