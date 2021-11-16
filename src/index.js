@@ -14,6 +14,7 @@ function onInputTyping(event) {
   const name = event.target.value.trim();
 
   if (name.length < 1) {
+    cleanInterface();
     return;
   }
 
